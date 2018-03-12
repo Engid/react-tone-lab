@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/0.12.72/Tone.js" type="text/javascript"></script>
+</head>
+<body>
+  Use this for playing around with Tone at runtime
+
+  You can either just load this into a browser from the file system or use something like <code>serve</code>
+
+
+<script>
+  var seq = new Tone.Sequence(function(time, note){
+    console.log(note);
+  //straight quater notes
+  }, ["C4", "E4", "G4", "A4"], "4n");
+</script>
+</body>
+</html>
