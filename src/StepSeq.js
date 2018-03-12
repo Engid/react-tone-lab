@@ -24,8 +24,10 @@ const tableBuilder = (props) => {
 const Explanation = () => {
   return (
     <div id="Explanation">
-      <a href="https://tonejs.github.io/docs/#Transport">Tone.Transport</a> 
-      is the application-wide timekeeper. It's clock source enables sample-accurate scheduling as well as tempo-curves and automation. This example uses Tone.Sequence to invoke a callback every 16th note.
+       <text>
+          <a href="https://tonejs.github.io/docs/#Transport">Tone.Transport</a> 
+          is the application-wide timekeeper. It's clock source enables sample-accurate scheduling as well as tempo-curves and automation. This example uses Tone.Sequence to invoke a callback every 16th note.
+        </text>
     </div>
   );
 }
