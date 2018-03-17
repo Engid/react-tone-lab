@@ -11,22 +11,7 @@ import Tone from 'tone';
   constructor(props){
     super(props);
 
-
     //NOTE: I'm swapping out the samples from the original demo to use a simple synth
-    
-    /*
-    var keys = new Tone.Players({
-      "A" : "./audio/casio/A1.[mp3|ogg]",
-      "C#" : "./audio/casio/Cs2.[mp3|ogg]",
-      "E" : "./audio/casio/E2.[mp3|ogg]",
-      "F#" : "./audio/casio/Fs2.[mp3|ogg]",
-    }, {
-      "volume" : -10,
-      "fadeOut" : "64n",
-    }).toMaster();
-    */
-
-    //Default
     let synth = new Tone.Synth({
       oscillator: {
         type: 'triangle'
@@ -80,11 +65,21 @@ import Tone from 'tone';
   }
  }
 
- const buildMatrix = (numRows, numCols) => {
-  let m = new Array(numRows);
-  for(let i = 0; i < numRows; ++i)
-    m.push(new Array(numCols));
+ const buildNewMatrix = (numRows, numCols, initValue = 0) => {
+  let m = [];
 
+  /**
+   * Here we use the very terse but beautiful line
+   * 
+   * [...Array(numCols)].map( v => initValue )
+   * 
+   * to generate a new array at the length of numCols with
+   * each value set to the initValue parameter.
+   */
+
+  for(let i = 0; i < numRows; ++i)
+    m.push([...Array(numCols)].map( v => initValue ));
+  
   return m;
 }
 
@@ -123,7 +118,7 @@ function immutableUpdateMatrix(matrix, row, col, update) {
    *  ];
    * 
    * 
-   * creates:
+   * creates a new array containing:
    * [
    *   ['ant', 'bison', 'camel', 'duck', 'elephant'],
    *   ['ant', 'bison', 'fish', 'duck', 'elephant'],
@@ -138,8 +133,6 @@ function immutableUpdateMatrix(matrix, row, col, update) {
     [...matrix[row].slice(0,col), update, ...matrix[row].slice(col+1)],
     ...matrix.slice(row+1)
   ];
-
-
 }
 
 const Explanation = () => {
@@ -147,7 +140,9 @@ const Explanation = () => {
     <div id="Explanation">
        <text>
           <a href="https://tonejs.github.io/docs/#Transport">Tone.Transport</a> 
-          is the application-wide timekeeper. It\'s clock source enables sample-accurate scheduling as well as tempo-curves and automation. This example uses Tone.Sequence to invoke a callback every 16th note.
+          is the application-wide timekeeper. Its clock source enables sample-accurate 
+          scheduling as well as tempo-curves and automation. This example uses Tone.Sequence 
+          to invoke a callback every 16th note.
         </text>
     </div>
   );
